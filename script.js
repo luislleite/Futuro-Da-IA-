@@ -6,81 +6,42 @@ const textoResultado = document.querySelector(".texto-resultado");
 
 const perguntas =[
     {
-        enunciado: "O ensino de programação e robótica tem ganhado espaço nas escolas. Você acredita que aprender a programar é essencial para a formação dos jovens, mesmo para quem não quer seguir carreira em tecnologia?",
+        enunciado: "O uso excessivo de redes sociais e celulares pode afetar a saúde mental dos jovens. Qual atitude pode contribuir para um uso mais saudável da tecnologia?",
         alternativas: [
             {
-                texto: "Sim, pois desenvolve o raciocínio lógico, a resolução de problemas e a capacidade de estruturar pensamentos de forma organizada.",
-                afirmacao: "A programação vai muito além dos códigos: ela ensina uma forma estruturada de pensar que ajuda na solução de desafios em qualquer área do conhecimento."
+                texto: "Estabelecer limites de tempo nas redes sociais e reservar momentos para atividades fora das telas.",
+                afirmacao: "Equilibrar o uso da tecnologia com outras atividades pode contribuir para o bem-estar, reduzir o estresse e melhorar a qualidade de vida."
             },
             {
-                texto: "Não, pois é um conhecimento muito específico que só traz benefícios reais para quem pretende trabalhar na área de tecnologia.",
-                afirmacao: "Embora pareça uma habilidade estritamente técnica, a lógica de programação desenvolve competências universais e cada vez mais cobradas no mercado."
+                texto: "Utilizar as redes sociais durante todo o tempo livre, inclusive antes de dormir.",
+                afirmacao: "O uso excessivo das redes sociais pode prejudicar o sono, aumentar o estresse e interferir no bem-estar dos jovens."
             }
         ]
     },
     {
-        enunciado: "Muitos iniciantes acham a área de robótica intimidadora por envolver código e eletrônica. Qual é a abordagem mais recomendada para quem quer dar os primeiros passos?",
+        enunciado: "A prática regular de atividades físicas é importante durante a juventude. Quais benefícios ela pode proporcionar?",
         alternativas: [
             {
-                texto: "Começar com linguagens visuais baseadas em blocos e kits educativos simples de robótica.",
-                afirmacao: "Iniciar com ferramentas visuais permite aprender a lógica fundamental sem a frustração de cometer erros de sintaxe e digitação no código."
+                texto: "Pode melhorar o condicionamento físico, a qualidade do sono, a disposição e contribuir para o bem-estar mental.",
+                afirmacao: "A atividade física regular beneficia tanto o corpo quanto a mente, contribuindo para uma rotina mais saudável e para uma melhor qualidade de vida."
             },
             {
-                texto: "Aprender diretamente linguagens complexas como C++ e montar circuitos do zero sem kits prontos.",
-                afirmacao: "Tentar dominar conceitos avançados de eletrônica e código ao mesmo tempo pode tornar o aprendizado muito árduo e desmotivar o iniciante."
+                texto: "Serve apenas para modificar a aparência física e não possui relação com a saúde mental.",
+                afirmacao: "A atividade física não está relacionada apenas à aparência, pois também pode favorecer o bem-estar emocional, o sono e a disposição."
             }
         ]
     },
     {
-        enunciado: "Kits de robótica e componentes eletrônicos podem ter custos elevados. O uso de simuladores virtuais e softwares gratuitos é uma alternativa viável para quem quer aprender sem gastar muito?",
+        enunciado: "Pressões escolares, problemas pessoais e preocupações com o futuro podem gerar estresse e ansiedade nos jovens. O que é mais adequado fazer quando essas emoções começam a prejudicar a rotina?",
         alternativas: [
             {
-                texto: "Sim, pois os simuladores virtuais permitem testar circuitos e códigos em tempo real sem risco de danificar peças físicas.",
-                afirmacao: "Os ambientes virtuais democratizam o acesso à robótica, permitindo que qualquer pessoa pratique e erre com segurança antes de investir em componentes."
+                texto: "Conversar com pessoas de confiança e, quando necessário, procurar ajuda de um profissional de saúde.",
+                afirmacao: "Buscar apoio e conversar sobre as dificuldades pode ser importante para enfrentar situações de estresse e cuidar da saúde mental."
             },
             {
-                texto: "Não faz muita diferença, pois a experiência prática de manusear peças físicas é insubstituível para o aprendizado.",
-                afirmacao: "Apesar do contato físico ser enriquecedor, a simulação digital já oferece precisão suficiente para construir uma base sólida e acessível em robótica."
+                texto: "Ignorar completamente os sentimentos e evitar falar sobre eles com outras pessoas.",
+                afirmacao: "Ignorar sentimentos persistentes pode dificultar o enfrentamento dos problemas, enquanto procurar apoio pode ajudar a lidar melhor com essas situações."
             }
         ]
     }
 ];
-
-let atual = 0;
-let perguntaAtual;
-let historiaFinal = "";
-
-function mostraPergunta() {
-    if (atual >= perguntas.length) {
-        mostraResultado();
-        return;
-    }
-    perguntaAtual = perguntas[atual];
-    caixaPerguntas.textContent = perguntaAtual.enunciado;
-    caixaAlternativas.textContent = "";
-    mostraAlternativas();
-}
-
-function mostraAlternativas(){
-    for(const alternativa of perguntaAtual.alternativas) {
-        const botaoAlternativas = document.createElement("button");
-        botaoAlternativas.textContent = alternativa.texto;
-        botaoAlternativas.addEventListener("click", () => respostaSelecionada(alternativa));
-        caixaAlternativas.appendChild(botaoAlternativas);
-    }
-}
-
-function respostaSelecionada(opcaoSelecionada) {
-    const afirmacoes = opcaoSelecionada.afirmacao;
-    historiaFinal += afirmacoes + " ";
-    atual++;
-    mostraPergunta();
-}
-
-function mostraResultado() {
-    caixaPerguntas.textContent = "Sobre a leitura...";
-    textoResultado.textContent = historiaFinal;
-    caixaAlternativas.textContent = "";
-}
-
-mostraPergunta();
